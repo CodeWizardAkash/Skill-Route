@@ -1,0 +1,21 @@
+[
+  {
+    "id": "portfolio",
+    "title": "Portfolio Website",
+    "category": "Web Development",
+    "difficulty": "Beginner",
+    "description": "Personal portfolio using HTML, CSS, and React.",
+    "skills": ["HTML", "CSS", "React"],
+    "link": ""
+  },
+  {
+    "id": "portfolio",
+    "title": "Portfolio Website",
+    "category": "Web Development",
+    "difficulty": "Beginner",
+    "description": "Personal portfolio using HTML, CSS, and React.",
+    "skills": ["HTML", "CSS", "React"],
+    "link": ""
+  }
+
+]

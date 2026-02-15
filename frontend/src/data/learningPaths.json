@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Web Development",
+    "slug": "web-development",
+    "description": "Learn to build modern websites and frontend applications.",
+    "topics": [
+      "HTML Basics",
+      "CSS Fundamentals",
+      "JavaScript Basics",
+      "React Basics",
+      "Build Mini Projects"
+    ]
+  },
+  {
+    "title": "DSA",
+    "slug": "dsa",
+    "description": "Master problem solving, data structures, and algorithms.",
+    "topics": [
+      "Arrays & Strings",
+      "Linked List",
+      "Stack & Queue",
+      "Trees & Graphs",
+      "Dynamic Programming"
+    ]
+  },
+  {
+    "title": "AI / ML",
+    "slug": "ai-ml",
+    "description": "Understand the basics of Artificial Intelligence and Machine Learning.",
+    "topics": [
+      "Python Basics",
+      "Linear Algebra & Probability",
+      "Data Preprocessing",
+      "Machine Learning Algorithms",
+      "Mini ML Projects"
+    ]
+  },
+  {
+    "title": "Cyber Security",
+    "slug": "cyber-security",
+    "description": "Learn fundamentals of security, ethical hacking, and cyber defense.",
+    "topics": [
+      "Networking Basics",
+      "Linux Fundamentals",
+      "Web Security Basics",
+      "Ethical Hacking Concepts",
+      "CTF & Practice Labs"
+    ]
+  }
+]
