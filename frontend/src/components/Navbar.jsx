@@ -1,6 +1,4 @@
-import { useState } from "react"
-import { Link, NavLink } from "react-router-dom"
-import { useTheme } from "../context/ThemeContext"
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const { isDarkMode, toggleTheme } = useTheme()
@@ -12,17 +10,15 @@ export default function Navbar() {
   const navLinks = ["/", "/learning-paths", "/projects", "/contributors"]
 
   return (
-    <nav className="bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 px-4 md:px-8 py-4 sticky top-0 z-50 transition-colors">
-      <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
-        <Link to="/" onClick={closeMenu}>
-          <h1 className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">
-            SkillRoute
-          </h1>
-        </Link>
+    <nav className="bg-gray-950 border-b border-gray-800 px-8 py-4 flex justify-between items-center">
+      <h1 className="text-xl font-bold text-blue-400">
+        SkillRoute
+      </h1>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 items-center">
-          {navLinks.map((path, i) => (
+      {/* ONE flex row only */}
+      <div className="flex items-center gap-6">
+        {["/", "/learning-paths", "/projects", "/contributors"].map(
+          (path, i) => (
             <NavLink
               key={i}
               to={path}
@@ -35,40 +31,23 @@ export default function Navbar() {
             >
               {path === "/" ? "Home" : path.replace("/", "").replace("-", " ")}
             </NavLink>
-          ))}
-          <button
-            onClick={toggleTheme}
-            className="ml-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle Theme"
-          >
-            {isDarkMode ? "☀️" : "🌙"}
-          </button>
-        </div>
+          )
+        )}
 
-        {/* Mobile Menu Icon & Theme Toggle */}
-        <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle Theme"
-          >
-            {isDarkMode ? "☀️" : "🌙"}
-          </button>
+        {/* Auth Links */}
+        <Link
+          to="/signin"
+          className="text-gray-400 hover:text-white"
+        >
+          Sign In
+        </Link>
 
-          <button
-            onClick={toggleMenu}
-            className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white focus:outline-none p-2"
-            aria-label="Toggle Menu"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              )}
-            </svg>
-          </button>
-        </div>
+        <Link
+          to="/signup"
+          className="bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-lg font-medium flex items-center"
+        >
+          Sign Up
+        </Link>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -92,5 +71,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }
