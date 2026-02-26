@@ -8,6 +8,8 @@ import LearningPathDetail from "./pages/LearningPathDetail"
 
 import AddProject from "./pages/AddProject";
 import ProjectDetail from "./pages/ProjectDetail";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/learning-paths/:slug" element={<LearningPathDetail />} />
         <Route path="/add-project" element={<AddProject />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
 
       </Routes>
     </div>
