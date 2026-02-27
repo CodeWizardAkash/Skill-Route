@@ -6,6 +6,7 @@ import Projects from "./pages/Projects"
 import Contributors from "./pages/Contributors"
 import LearningPathDetail from "./pages/LearningPathDetail"
 import TopicDetail from "./pages/TopicDetail"
+import DsaTopicRoadmap from "./pages/DsaTopicRoadmap"
 
 import AddProject from "./pages/AddProject";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contributors" element={<Contributors />} />
         <Route path="/learning-paths/:slug" element={<LearningPathDetail />} />
+        <Route path="/dsa/:topicId" element={<DsaTopicRoadmap />} />
         <Route path="/dsa/:topicId/:pointId" element={<TopicDetail />} />
         <Route path="/add-project" element={<AddProject />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />

@@ -16,7 +16,8 @@
     "slug": "dsa",
     "description": "Master problem solving, data structures, and algorithms.",
     "topics": [
-      "Arrays"
+      "Arrays",
+      "Strings"
     ]
   },
   {

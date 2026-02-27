@@ -113,18 +113,37 @@ const SpiralMatrixVisual = () => (
     </div>
 );
 
-const GenericArrayVisualizer = ({ inputArray, outputArray, outputVariable, description, highlightIndices = [] }) => (
-    <div className="flex flex-col items-center gap-4 my-6 w-full max-w-2xl mx-auto">
-        {description && <div className="text-cyan-600 dark:text-cyan-300 font-semibold mb-2 transition-colors text-center">{description}</div>}
+const shouldShowOutputHeading = outputVariable => {
+    if (typeof outputVariable === 'number' || typeof outputVariable === 'boolean') return true;
+    if (typeof outputVariable !== 'string') return true;
+    const value = outputVariable.trim();
+    if (!value) return false;
+    if (value.length <= 18) return true;
+    return !value.includes(' ');
+};
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+const GenericArrayVisualizer = ({
+    inputArray,
+    outputArray,
+    outputVariable,
+    description,
+    highlightIndices = [],
+    forceShowOutputHeading
+}) => {
+    const showOutputHeading = forceShowOutputHeading ?? shouldShowOutputHeading(outputVariable);
+
+    return (
+        <div className="flex flex-col items-center gap-4 my-6 w-full max-w-2xl mx-auto">
+            {description && <div className="text-cyan-600 dark:text-cyan-300 font-semibold text-sm md:text-base mb-2 transition-colors text-center leading-snug">{description}</div>}
+
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8 w-full">
             {/* Input Section */}
             {inputArray && (
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 w-full">
                     <div className="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors">Input Array</div>
-                    <div className="flex bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm dark:shadow-none transition-colors max-w-full overflow-x-auto">
+                    <div className="flex bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm dark:shadow-none transition-colors max-w-full w-full overflow-x-auto">
                         {inputArray.map((val, idx) => (
-                            <div key={idx} className={`min-w-10 h-10 px-2 flex flex-col items-center justify-center border-r last:border-0 border-gray-200 dark:border-gray-700 font-bold text-sm md:text-base transition-colors
+                            <div key={idx} className={`min-w-10 h-10 px-2 flex flex-col items-center justify-center border-r last:border-0 border-gray-200 dark:border-gray-700 font-bold text-xs md:text-sm transition-colors
                                 ${highlightIndices.includes(idx) ? 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300' : 'text-gray-900 dark:text-white'}`}>
                                 <span className="text-[10px] text-gray-400 font-normal leading-none mb-1">{idx}</span>
                                 <span>{val}</span>
@@ -144,11 +163,11 @@ const GenericArrayVisualizer = ({ inputArray, outputArray, outputVariable, descr
 
             {/* Output Section */}
             {outputArray && (
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 w-full">
                     <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium transition-colors">Output Array</div>
-                    <div className="flex bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg overflow-hidden shadow-sm dark:shadow-none transition-colors max-w-full overflow-x-auto">
+                    <div className="flex bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg overflow-hidden shadow-sm dark:shadow-none transition-colors max-w-full w-full overflow-x-auto">
                         {outputArray.map((val, idx) => (
-                            <div key={idx} className="min-w-10 h-10 px-2 flex flex-col items-center justify-center border-r last:border-0 border-emerald-200 dark:border-emerald-800 font-bold text-sm md:text-base text-emerald-700 dark:text-emerald-400 transition-colors">
+                            <div key={idx} className="min-w-10 h-10 px-2 flex flex-col items-center justify-center border-r last:border-0 border-emerald-200 dark:border-emerald-800 font-bold text-xs md:text-sm text-emerald-700 dark:text-emerald-400 transition-colors">
                                 <span className="text-[10px] text-emerald-400/70 font-normal leading-none mb-1">{idx}</span>
                                 <span>{val}</span>
                             </div>
@@ -158,16 +177,19 @@ const GenericArrayVisualizer = ({ inputArray, outputArray, outputVariable, descr
             )}
 
             {outputVariable !== undefined && (
-                <div className="flex flex-col items-center gap-2">
-                    <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium transition-colors">Output</div>
-                    <div className="h-10 px-6 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg shadow-sm dark:shadow-none font-bold text-lg text-emerald-700 dark:text-emerald-400 transition-colors">
+                <div className="flex flex-col items-center gap-2 w-full">
+                    {showOutputHeading && (
+                        <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium transition-colors">Output</div>
+                    )}
+                    <div className="min-h-10 w-full max-w-full px-3 md:px-5 py-2 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg shadow-sm dark:shadow-none font-bold text-sm md:text-base text-emerald-700 dark:text-emerald-400 transition-colors text-center break-words whitespace-normal leading-snug">
                         {outputVariable}
                     </div>
                 </div>
             )}
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 export const dsaTopicsContent = {
     "array-definition": {
@@ -1208,6 +1230,799 @@ public boolean searchMatrix(int[][] matrix, int target) {
     }
     return false;
 }`
+        }
+    },
+    "string-definition": {
+        title: "What is a String (Character Sequence)",
+        explanation: "A string is an ordered sequence of characters. In most DSA problems, you can treat strings like character arrays and solve them with indexing, loops, pointers, and maps.",
+        visual: <GenericArrayVisualizer inputArray={['s', 't', 'r', 'i', 'n', 'g']} outputVariable={'"string" (length = 6)'} description="String is a sequence of characters at indices 0 to n-1" />,
+        code: {
+            cpp: `// C++ snippet
+string s = "hello";
+cout << s[0] << endl;      // h
+cout << s.size() << endl;  // 5`,
+            java: `// Java snippet
+String s = "hello";
+System.out.println(s.charAt(0)); // h
+System.out.println(s.length());  // 5`
+        }
+    },
+    "char-vs-string": {
+        title: "Char vs String and ASCII/Unicode basics",
+        explanation: "A char stores one character, while a string stores many characters. Characters map to numeric codes (ASCII/Unicode), which helps in comparison, hashing, and frequency problems.",
+        visual: <GenericArrayVisualizer inputArray={['A', 'B', 'C']} outputVariable="char = one symbol, string = many symbols" description="Characters have numeric codes: 'A' = 65, 'a' = 97 (ASCII)" />,
+        code: {
+            cpp: `// C++ snippet
+char ch = 'A';
+string word = "Apple";
+cout << (int)ch << endl;      // 65
+cout << word[0] << endl;      // A`,
+            java: `// Java snippet
+char ch = 'A';
+String word = "Apple";
+System.out.println((int) ch);       // 65
+System.out.println(word.charAt(0)); // A`
+        }
+    },
+    "string-indexing-traversal": {
+        title: "Indexing and traversal in strings",
+        explanation: "Just like arrays, strings are indexed from 0. Most problems start with linear traversal using loops.",
+        visual: <GenericArrayVisualizer inputArray={['c', 'o', 'd', 'e']} outputVariable="Traverse from i = 0 to n - 1" description="Visit every character exactly once" highlightIndices={[0, 1, 2, 3]} />,
+        code: {
+            cpp: `// C++ snippet
+string s = "code";
+for (int i = 0; i < s.size(); i++) {
+    cout << s[i] << " ";
+}`,
+            java: `// Java snippet
+String s = "code";
+for (int i = 0; i < s.length(); i++) {
+    System.out.print(s.charAt(i) + " ");
+}`
+        }
+    },
+    "string-immutability": {
+        title: "Immutability in Java vs mutability techniques in C++",
+        explanation: "In Java, String is immutable, so every modification creates a new string. In C++, std::string characters can be modified directly by index.",
+        visual: <GenericArrayVisualizer inputArray={['h', 'e', 'l', 'l', 'o']} outputVariable="Java: use StringBuilder for in-place style edits" description="Mutation behavior differs by language" />,
+        code: {
+            cpp: `// C++ snippet (mutable by index)
+string s = "hello";
+s[0] = 'H';      // now "Hello"`,
+            java: `// Java snippet (String is immutable)
+String s = "hello";
+StringBuilder sb = new StringBuilder(s);
+sb.setCharAt(0, 'H');
+s = sb.toString(); // "Hello"`
+        }
+    },
+    "string-complexity": {
+        title: "Time complexity basics of common string operations",
+        explanation: "Index access is O(1), traversal is O(n), and many operations like concatenation or substring creation can involve O(n) copying depending on implementation.",
+        visual: <GenericArrayVisualizer inputArray={['Index', 'Traverse', 'Concat', 'Search']} outputVariable="O(1), O(n), O(n), O(n*m)" description="Know operation cost before choosing approach" />,
+        code: {
+            cpp: `// Complexity quick notes
+// s[i]                -> O(1)
+// loop over string    -> O(n)
+// s1 + s2             -> O(n + m)
+// naive pattern match -> O(n * m)`,
+            java: `// Complexity quick notes
+// s.charAt(i)         -> O(1)
+// traversal           -> O(n)
+// s1 + s2 in loop     -> costly (prefer StringBuilder)
+// naive search        -> O(n * m)`
+        }
+    },
+    "string-input-output": {
+        title: "Take string input and output",
+        explanation: "For full-line input (with spaces), use getline in C++ and nextLine in Java.",
+        visual: <GenericArrayVisualizer outputArray={['hello world']} outputVariable="Read complete line including spaces" description="Input and output flow for strings" />,
+        code: {
+            cpp: `// C++ snippet
+string s;
+getline(cin, s);   // reads full line
+cout << s << endl;`,
+            java: `// Java snippet
+Scanner sc = new Scanner(System.in);
+String s = sc.nextLine();  // full line
+System.out.println(s);`
+        }
+    },
+    "string-length-concat": {
+        title: "Length, concatenation, and append",
+        explanation: "String length is fundamental for loops and bounds. Concatenation builds new strings, while builders are more efficient for repeated appends.",
+        visual: <GenericArrayVisualizer inputArray={['"hello"', '"world"']} outputVariable={'"hello world"'} description="Join strings and measure final length" />,
+        code: {
+            cpp: `// C++ snippet
+string a = "hello";
+string b = "world";
+string c = a + " " + b;   // "hello world"
+cout << c.size() << endl;`,
+            java: `// Java snippet
+String a = "hello";
+String b = "world";
+String c = a + " " + b;
+System.out.println(c.length());
+
+StringBuilder sb = new StringBuilder();
+sb.append(a).append(" ").append(b);`
+        }
+    },
+    "reverse-string-basic": {
+        title: "Reverse a string",
+        explanation: "Reversing is a foundational operation used in many problems, and it is typically solved with two pointers.",
+        visual: <GenericArrayVisualizer inputArray={['c', 'o', 'd', 'e']} outputArray={['e', 'd', 'o', 'c']} description="Reverse by swapping start and end characters" />,
+        code: {
+            cpp: `// C++ snippet
+string s = "code";
+
+// Approach 1: Built-in (quick)
+string viaLibrary = s;
+reverse(viaLibrary.begin(), viaLibrary.end());
+
+// Approach 2: Manual two-pointer (important for interviews)
+int left = 0, right = (int)s.size() - 1;
+while (left < right) {
+    swap(s[left], s[right]);
+    left++;
+    right--;
+}
+cout << s << endl; // edoc`,
+            java: `// Java snippet
+String s = "code";
+
+// Approach 1: Built-in helper
+String viaLibrary = new StringBuilder(s).reverse().toString();
+
+// Approach 2: Manual two-pointer
+char[] arr = s.toCharArray();
+int left = 0, right = arr.length - 1;
+while (left < right) {
+    char temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+    left++;
+    right--;
+}
+String manual = new String(arr);
+System.out.println(manual); // edoc`
+        }
+    },
+    "palindrome-check-basic": {
+        title: "Check if a string is palindrome",
+        explanation: "Use two pointers: compare left and right characters, then move inward. If all pairs match, the string is a palindrome.",
+        visual: <GenericArrayVisualizer inputArray={['l', 'e', 'v', 'e', 'l']} outputVariable="left and right pointers meet -> palindrome" description="Two-pointer palindrome check" highlightIndices={[0, 4]} />,
+        code: {
+            cpp: `// C++ snippet
+bool isPalindrome(string s) {
+    int left = 0, right = (int)s.size() - 1;
+    while (left < right) {
+        if (s[left] != s[right]) return false;
+        left++;
+        right--;
+    }
+    return true;
+}`,
+            java: `// Java snippet
+boolean isPalindrome(String s) {
+    int left = 0, right = s.length() - 1;
+    while (left < right) {
+        if (s.charAt(left) != s.charAt(right)) return false;
+        left++;
+        right--;
+    }
+    return true;
+}`
+        }
+    },
+    "string-frequency-basic": {
+        title: "Character frequency counting",
+        explanation: "Frequency tables are one of the most useful tools in string problems: anagrams, duplicates, uniqueness, and pattern checks.",
+        visual: <GenericArrayVisualizer inputArray={['b', 'a', 'n', 'a', 'n', 'a']} outputVariable="{a:3, b:1, n:2}" description="Count every character while traversing once" />,
+        code: {
+            cpp: `// C++ snippet (lowercase only)
+vector<int> freq(26, 0);
+string s = "banana";
+for (char ch : s) freq[ch - 'a']++;
+cout << freq['a' - 'a']; // 3`,
+            java: `// Java snippet
+Map<Character, Integer> freq = new HashMap<>();
+String s = "banana";
+for (char ch : s.toCharArray()) {
+    freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+}`
+        }
+    },
+    "substring-vs-subsequence": {
+        title: "Substring vs Subsequence",
+        explanation: "Substring means continuous characters. Subsequence means order is preserved, but characters need not be adjacent.",
+        visual: <GenericArrayVisualizer inputArray={['s', 'k', 'i', 'l', 'l']} outputArray={['k', 'i', 'l']} outputVariable={'"kil" can be substring and subsequence; "sl" is only subsequence'} description="Continuity is the key difference" highlightIndices={[1, 2, 3]} />,
+        code: {
+            cpp: `// Example with "skill":
+// Substring: "kil" (continuous)
+// Subsequence: "sil" (indices 0,2,3)
+// Every substring is a subsequence, but not vice versa.`,
+            java: `// Counts:
+// Total substrings = n * (n + 1) / 2
+// Total subsequences = 2^n`
+        }
+    },
+    "anagram-check": {
+        title: "Anagram check (sorting and frequency map methods)",
+        explanation: "Two strings are anagrams if they contain exactly the same characters with the same frequencies.",
+        visual: <GenericArrayVisualizer inputArray={['l', 'i', 's', 't', 'e', 'n']} outputArray={['s', 'i', 'l', 'e', 'n', 't']} outputVariable="Anagram -> true" description="Compare sorted forms or frequency counts" />,
+        code: {
+            cpp: `// C++ snippet
+// Approach 1: Sorting
+bool isAnagramSort(string a, string b) {
+    if (a.size() != b.size()) return false;
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    return a == b;
+}
+
+// Approach 2: Frequency counting (without sorting)
+bool isAnagramFreq(string a, string b) {
+    if (a.size() != b.size()) return false;
+    vector<int> freq(26, 0);
+    for (char ch : a) freq[ch - 'a']++;
+    for (char ch : b) freq[ch - 'a']--;
+    for (int x : freq) if (x != 0) return false;
+    return true;
+}`,
+            java: `// Java snippet
+// Approach 1: Frequency counting (without sorting)
+boolean isAnagramFreq(String a, String b) {
+    if (a.length() != b.length()) return false;
+    int[] freq = new int[26];
+    for (int i = 0; i < a.length(); i++) {
+        freq[a.charAt(i) - 'a']++;
+        freq[b.charAt(i) - 'a']--;
+    }
+    for (int x : freq) if (x != 0) return false;
+    return true;
+}
+
+// Approach 2: Sorting
+boolean isAnagramSort(String a, String b) {
+    if (a.length() != b.length()) return false;
+    char[] x = a.toCharArray();
+    char[] y = b.toCharArray();
+    Arrays.sort(x);
+    Arrays.sort(y);
+    return Arrays.equals(x, y);
+}`
+        }
+    },
+    "first-non-repeating-char": {
+        title: "First non-repeating character",
+        explanation: "Count frequencies first, then scan again to find the first character whose frequency is 1.",
+        visual: <GenericArrayVisualizer inputArray={['s', 'w', 'i', 's', 's']} outputVariable="First non-repeating = w (index 1)" description="Two-pass frequency strategy" highlightIndices={[1]} />,
+        code: {
+            cpp: `// C++ snippet
+int firstUniqChar(string s) {
+    vector<int> freq(26, 0);
+    for (char ch : s) freq[ch - 'a']++;
+    for (int i = 0; i < s.size(); i++) {
+        if (freq[s[i] - 'a'] == 1) return i;
+    }
+    return -1;
+}`,
+            java: `// Java snippet
+int firstUniqChar(String s) {
+    int[] freq = new int[26];
+    for (char ch : s.toCharArray()) freq[ch - 'a']++;
+    for (int i = 0; i < s.length(); i++) {
+        if (freq[s.charAt(i) - 'a'] == 1) return i;
+    }
+    return -1;
+}`
+        }
+    },
+    "longest-common-prefix": {
+        title: "Longest common prefix",
+        explanation: "A common interview favorite: identify the longest prefix shared by all strings in the array.",
+        visual: <GenericArrayVisualizer inputArray={['flower', 'flow', 'flight']} outputVariable={'Longest common prefix = "fl"'} description="Shrink prefix until every word starts with it" />,
+        code: {
+            cpp: `// C++ snippet
+string longestCommonPrefix(vector<string>& strs) {
+    if (strs.empty()) return "";
+    string prefix = strs[0];
+    for (int i = 1; i < strs.size(); i++) {
+        while (strs[i].find(prefix) != 0) {
+            prefix.pop_back();
+            if (prefix.empty()) return "";
+        }
+    }
+    return prefix;
+}`,
+            java: `// Java snippet
+String longestCommonPrefix(String[] strs) {
+    if (strs.length == 0) return "";
+    String prefix = strs[0];
+    for (int i = 1; i < strs.length; i++) {
+        while (!strs[i].startsWith(prefix)) {
+            prefix = prefix.substring(0, prefix.length() - 1);
+            if (prefix.isEmpty()) return "";
+        }
+    }
+    return prefix;
+}`
+        }
+    },
+    "reverse-words-sentence": {
+        title: "Reverse words in a sentence",
+        explanation: "This problem tests trimming, splitting, and reconstruction. Reverse word order while keeping each word intact.",
+        visual: <GenericArrayVisualizer inputArray={['i', 'love', 'dsa']} outputArray={['dsa', 'love', 'i']} description="Reverse word order, not characters inside each word" />,
+        code: {
+            cpp: `// C++ snippet
+string reverseWords(string s) {
+    stringstream ss(s);
+    vector<string> words;
+    string w;
+    while (ss >> w) words.push_back(w);
+
+    // Manual reverse of words array (without reverse function)
+    int left = 0, right = (int)words.size() - 1;
+    while (left < right) {
+        swap(words[left], words[right]);
+        left++;
+        right--;
+    }
+
+    string ans;
+    for (int i = 0; i < words.size(); i++) {
+        if (i) ans += " ";
+        ans += words[i];
+    }
+    return ans;
+}`,
+            java: `// Java snippet
+String reverseWords(String s) {
+    // Approach 1: split + reverse traversal
+    String[] words = s.trim().split("\\\\s+");
+    StringBuilder sb = new StringBuilder();
+    for (int i = words.length - 1; i >= 0; i--) {
+        sb.append(words[i]);
+        if (i != 0) sb.append(" ");
+    }
+    return sb.toString();
+}`
+        }
+    },
+    "basic-string-practice-set": {
+        title: "Practice set: beginner to early-intermediate questions",
+        explanation: "Solve these in sequence: reverse string, palindrome check, anagram check, first unique char, longest common prefix, reverse words, valid parentheses, and string compression.",
+        visual: <GenericArrayVisualizer inputArray={['Easy', 'Easy', 'Easy', 'Medium', 'Medium', 'Medium']} outputVariable="Target: 8 solved questions + 2 revisions" description="Build consistency before advanced patterns" />,
+        code: {
+            cpp: `// Suggested question order
+// 1) Reverse String
+// 2) Valid Palindrome
+// 3) Valid Anagram
+// 4) First Unique Character
+// 5) Longest Common Prefix
+// 6) Reverse Words in String
+// 7) Valid Parentheses
+// 8) String Compression`,
+            java: `// Tracking template
+// For each question, record:
+// - Approach used
+// - Time complexity
+// - Space complexity
+// - 2 edge cases`
+        }
+    },
+    "two-pointers-strings-usage": {
+        title: "Use case: Two pointers on strings",
+        explanation: "Two pointers are ideal for palindrome checks, reversal, and problems requiring comparisons from both ends.",
+        visual: <GenericArrayVisualizer inputArray={['r', 'a', 'c', 'e', 'c', 'a', 'r']} outputVariable="left++ and right-- until pointers cross" description="Two-pointer movement on a string" highlightIndices={[0, 6]} />,
+        code: {
+            cpp: `// C++ snippet - Valid palindrome after at most one deletion
+bool check(string& s, int i, int j) {
+    while (i < j) if (s[i++] != s[j--]) return false;
+    return true;
+}
+bool validPalindrome(string s) {
+    int i = 0, j = (int)s.size() - 1;
+    while (i < j) {
+        if (s[i] != s[j]) return check(s, i + 1, j) || check(s, i, j - 1);
+        i++; j--;
+    }
+    return true;
+}`,
+            java: `// Java snippet - same idea
+boolean check(String s, int i, int j) {
+    while (i < j) if (s.charAt(i++) != s.charAt(j--)) return false;
+    return true;
+}
+boolean validPalindrome(String s) {
+    int i = 0, j = s.length() - 1;
+    while (i < j) {
+        if (s.charAt(i) != s.charAt(j)) {
+            return check(s, i + 1, j) || check(s, i, j - 1);
+        }
+        i++; j--;
+    }
+    return true;
+}`
+        }
+    },
+    "longest-substring-without-repeat": {
+        title: "Longest substring without repeating characters",
+        explanation: "Sliding window plus last seen indices gives an O(n) solution for this classic problem.",
+        visual: <GenericArrayVisualizer inputArray={['a', 'b', 'c', 'a', 'b', 'c', 'b', 'b']} outputVariable="Longest window length = 3 (abc)" description="Expand right, move left when duplicate appears" />,
+        code: {
+            cpp: `// C++ snippet
+int lengthOfLongestSubstring(string s) {
+    vector<int> last(256, -1);
+    int left = 0, best = 0;
+    for (int right = 0; right < s.size(); right++) {
+        left = max(left, last[s[right]] + 1);
+        last[s[right]] = right;
+        best = max(best, right - left + 1);
+    }
+    return best;
+}`,
+            java: `// Java snippet
+int lengthOfLongestSubstring(String s) {
+    Map<Character, Integer> last = new HashMap<>();
+    int left = 0, best = 0;
+    for (int right = 0; right < s.length(); right++) {
+        char ch = s.charAt(right);
+        if (last.containsKey(ch)) {
+            left = Math.max(left, last.get(ch) + 1);
+        }
+        last.put(ch, right);
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}`
+        }
+    },
+    "min-window-substring": {
+        title: "Minimum window substring",
+        explanation: "Maintain required character counts. Expand right to satisfy all requirements, then shrink left to get the minimum valid window.",
+        visual: <GenericArrayVisualizer inputArray={['A', 'D', 'O', 'B', 'E', 'C', 'O', 'D', 'E', 'B', 'A', 'N', 'C']} outputVariable="Target = ABC, minimum window = BANC" description="Variable window that shrinks after meeting requirement" />,
+        code: {
+            cpp: `// C++ snippet
+string minWindow(string s, string t) {
+    vector<int> need(128, 0);
+    for (char c : t) need[c]++;
+    int missing = t.size(), left = 0, start = 0, bestLen = INT_MAX;
+    for (int right = 0; right < s.size(); right++) {
+        if (need[s[right]] > 0) missing--;
+        need[s[right]]--;
+        while (missing == 0) {
+            if (right - left + 1 < bestLen) {
+                bestLen = right - left + 1;
+                start = left;
+            }
+            need[s[left]]++;
+            if (need[s[left]] > 0) missing++;
+            left++;
+        }
+    }
+    return bestLen == INT_MAX ? "" : s.substr(start, bestLen);
+}`,
+            java: `// Java snippet
+String minWindow(String s, String t) {
+    int[] need = new int[128];
+    for (char c : t.toCharArray()) need[c]++;
+    int missing = t.length(), left = 0, start = 0, bestLen = Integer.MAX_VALUE;
+    for (int right = 0; right < s.length(); right++) {
+        if (need[s.charAt(right)] > 0) missing--;
+        need[s.charAt(right)]--;
+        while (missing == 0) {
+            if (right - left + 1 < bestLen) {
+                bestLen = right - left + 1;
+                start = left;
+            }
+            need[s.charAt(left)]++;
+            if (need[s.charAt(left)] > 0) missing++;
+            left++;
+        }
+    }
+    return bestLen == Integer.MAX_VALUE ? "" : s.substring(start, start + bestLen);
+}`
+        }
+    },
+    "group-anagrams": {
+        title: "Group anagrams",
+        explanation: "Canonical key strategy: sort each word and use it as the hash key. Words with same sorted key belong to one group.",
+        visual: <GenericArrayVisualizer inputArray={['eat', 'tea', 'tan', 'ate', 'nat', 'bat']} outputVariable="[[eat, tea, ate], [tan, nat], [bat]]" description="Hash map key = sorted characters" />,
+        code: {
+            cpp: `// C++ snippet
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    unordered_map<string, vector<string>> mp;
+    for (string s : strs) {
+        string key = s;
+        sort(key.begin(), key.end());
+        mp[key].push_back(s);
+    }
+    vector<vector<string>> ans;
+    for (auto& p : mp) ans.push_back(p.second);
+    return ans;
+}`,
+            java: `// Java snippet
+List<List<String>> groupAnagrams(String[] strs) {
+    Map<String, List<String>> map = new HashMap<>();
+    for (String s : strs) {
+        char[] arr = s.toCharArray();
+        Arrays.sort(arr);
+        String key = new String(arr);
+        map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+    }
+    return new ArrayList<>(map.values());
+}`
+        }
+    },
+    "string-pattern-practice-set": {
+        title: "Practice set: sliding window and hashing patterns",
+        explanation: "Cover core medium-level string patterns: longest substring without repeat, permutation in string, minimum window substring, find all anagrams in a string, and group anagrams.",
+        visual: <GenericArrayVisualizer inputArray={['Window', 'Hash Map', 'Frequency Array']} outputVariable="Focus on O(n) thinking and shrinking windows correctly" description="Pattern-based practice for interview consistency" />,
+        code: {
+            cpp: `// Must-do pattern problems
+// 1) Longest Substring Without Repeating Characters
+// 2) Minimum Window Substring
+// 3) Find All Anagrams in a String
+// 4) Permutation in String
+// 5) Group Anagrams`,
+            java: `// Solve each problem twice:
+// - First for correctness
+// - Second with complexity + edge-case awareness`
+        }
+    },
+    "kmp-intuition": {
+        title: "KMP intuition",
+        explanation: "KMP avoids unnecessary re-checking by using previously matched prefix information. This improves pattern search from O(n*m) to O(n+m).",
+        visual: <GenericArrayVisualizer inputArray={['a', 'b', 'a', 'b', 'a', 'c']} outputVariable="Reuse previous match info instead of restarting from scratch" description="Core idea behind KMP pattern matching" />,
+        code: {
+            cpp: `// KMP search complexity: O(n + m)
+// Step 1: Build LPS array for pattern
+// Step 2: Scan text with two pointers using LPS fallback`,
+            java: `// KMP idea:
+// If mismatch at j, jump j to lps[j - 1] instead of j = 0
+// This preserves already-known prefix matches`
+        }
+    },
+    "lps-array-construction": {
+        title: "LPS array construction",
+        explanation: "LPS[i] stores the longest proper prefix which is also a suffix for pattern[0..i]. It drives the KMP fallback jumps.",
+        visual: <GenericArrayVisualizer inputArray={['a', 'b', 'a', 'b', 'a', 'c']} outputArray={[0, 0, 1, 2, 3, 0]} description="LPS values for pattern = ab ab ac" />,
+        code: {
+            cpp: `// C++ snippet
+vector<int> buildLPS(string p) {
+    vector<int> lps(p.size(), 0);
+    int len = 0;
+    for (int i = 1; i < p.size();) {
+        if (p[i] == p[len]) {
+            lps[i++] = ++len;
+        } else if (len > 0) {
+            len = lps[len - 1];
+        } else {
+            lps[i++] = 0;
+        }
+    }
+    return lps;
+}`,
+            java: `// Java snippet
+int[] buildLPS(String p) {
+    int[] lps = new int[p.length()];
+    int len = 0, i = 1;
+    while (i < p.length()) {
+        if (p.charAt(i) == p.charAt(len)) {
+            lps[i++] = ++len;
+        } else if (len > 0) {
+            len = lps[len - 1];
+        } else {
+            lps[i++] = 0;
+        }
+    }
+    return lps;
+}`
+        }
+    },
+    "rabin-karp-intro": {
+        title: "Rabin-Karp (rolling hash) intro",
+        explanation: "Rabin-Karp hashes the pattern and each same-length text window. Matching hashes indicate potential matches, which can be verified by direct comparison.",
+        visual: <GenericArrayVisualizer inputArray={['Window1', 'Window2', 'Window3']} outputVariable="Compare rolling hash values quickly" description="Sliding hash over fixed-size windows" />,
+        code: {
+            cpp: `// Rabin-Karp outline
+// 1) Compute hash(pattern) and first window hash
+// 2) Slide window and update hash in O(1) (rolling hash)
+// 3) On hash match, verify characters`,
+            java: `// Rolling hash avoids recomputing full hash for each window
+// Typical use: fast substring search with low collision probability`
+        }
+    },
+    "z-algorithm-intro": {
+        title: "Z algorithm intro",
+        explanation: "Z[i] is the length of the longest substring starting at i that matches the prefix of the entire string. Useful for linear-time pattern matching.",
+        visual: <GenericArrayVisualizer inputArray={['a', 'a', 'b', 'x', 'a', 'a', 'z']} outputVariable="Z values capture prefix matches from each index" description="Efficient prefix matching across positions" />,
+        code: {
+            cpp: `// Z algorithm complexity: O(n)
+// Build Z array on: pattern + '$' + text
+// If any Z value equals pattern length => match found`,
+            java: `// Maintain [L, R] window that matches prefix
+// Reuse previous Z values when index falls inside [L, R]`
+        }
+    },
+    "advanced-string-practice-set": {
+        title: "Practice set: pattern matching and mixed hard questions",
+        explanation: "Practice KMP pattern search, repeated substring pattern, shortest palindrome, longest happy prefix, and string matching in an array.",
+        visual: <GenericArrayVisualizer inputArray={['KMP', 'Rolling Hash', 'Z Algorithm']} outputVariable="Goal: choose the right algorithm by constraints" description="Advanced set for pattern-matching confidence" />,
+        code: {
+            cpp: `// Advanced practice list
+// 1) Implement KMP search
+// 2) Repeated Substring Pattern
+// 3) Longest Happy Prefix
+// 4) String Matching in an Array
+// 5) Shortest Palindrome`,
+            java: `// Revision strategy:
+// - Re-derive LPS and Z array manually on paper
+// - Compare O(n*m) vs O(n+m) on same examples`
+        }
+    },
+    "lcs-dp": {
+        title: "Longest Common Subsequence (LCS)",
+        explanation: "LCS is the backbone DP problem on strings. Build a 2D table where each cell stores best answer for prefixes of two strings.",
+        visual: <GenericArrayVisualizer inputArray={['a', 'b', 'c', 'd', 'e']} outputArray={['a', 'c', 'e']} outputVariable="LCS length = 3" description="DP over two strings using include/skip decisions" />,
+        code: {
+            cpp: `// C++ snippet
+int lcs(string a, string b) {
+    int n = a.size(), m = b.size();
+    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (a[i - 1] == b[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1];
+            else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+    return dp[n][m];
+}`,
+            java: `// Java snippet
+int lcs(String a, String b) {
+    int n = a.length(), m = b.length();
+    int[][] dp = new int[n + 1][m + 1];
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (a.charAt(i - 1) == b.charAt(j - 1)) dp[i][j] = 1 + dp[i - 1][j - 1];
+            else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+    return dp[n][m];
+}`
+        }
+    },
+    "edit-distance-dp": {
+        title: "Edit Distance",
+        explanation: "Edit distance finds the minimum inserts, deletes, and replacements needed to convert one string into another.",
+        visual: <GenericArrayVisualizer inputArray={['h', 'o', 'r', 's', 'e']} outputArray={['r', 'o', 's']} outputVariable="Minimum operations = 3" description="DP with three transitions: insert, delete, replace" />,
+        code: {
+            cpp: `// C++ snippet
+int minDistance(string a, string b) {
+    int n = a.size(), m = b.size();
+    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+    for (int i = 0; i <= n; i++) dp[i][0] = i;
+    for (int j = 0; j <= m; j++) dp[0][j] = j;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (a[i - 1] == b[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+            else dp[i][j] = 1 + min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});
+        }
+    }
+    return dp[n][m];
+}`,
+            java: `// Java snippet
+int minDistance(String a, String b) {
+    int n = a.length(), m = b.length();
+    int[][] dp = new int[n + 1][m + 1];
+    for (int i = 0; i <= n; i++) dp[i][0] = i;
+    for (int j = 0; j <= m; j++) dp[0][j] = j;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (a.charAt(i - 1) == b.charAt(j - 1)) dp[i][j] = dp[i - 1][j - 1];
+            else dp[i][j] = 1 + Math.min(dp[i - 1][j], Math.min(dp[i][j - 1], dp[i - 1][j - 1]));
+        }
+    }
+    return dp[n][m];
+}`
+        }
+    },
+    "word-break-problem": {
+        title: "Word Break problem",
+        explanation: "Use DP where dp[i] indicates whether substring [0..i) can be segmented into valid dictionary words.",
+        visual: <GenericArrayVisualizer inputArray={['leet', 'code']} outputVariable={'"leetcode" -> true'} description="Check if full string can be segmented from dictionary words" />,
+        code: {
+            cpp: `// C++ snippet
+bool wordBreak(string s, vector<string>& wordDict) {
+    unordered_set<string> dict(wordDict.begin(), wordDict.end());
+    vector<bool> dp(s.size() + 1, false);
+    dp[0] = true;
+    for (int i = 1; i <= s.size(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (dp[j] && dict.count(s.substr(j, i - j))) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[s.size()];
+}`,
+            java: `// Java snippet
+boolean wordBreak(String s, List<String> wordDict) {
+    Set<String> dict = new HashSet<>(wordDict);
+    boolean[] dp = new boolean[s.length() + 1];
+    dp[0] = true;
+    for (int i = 1; i <= s.length(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (dp[j] && dict.contains(s.substring(j, i))) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[s.length()];
+}`
+        }
+    },
+    "trie-strings-basics": {
+        title: "Trie basics for string dictionaries",
+        explanation: "Trie stores strings character-by-character and is useful for prefix queries, autocomplete, and dictionary search.",
+        visual: <GenericArrayVisualizer inputArray={['app', 'apple', 'apt']} outputVariable="Shared prefix 'ap' stored once in Trie" description="Prefix tree reduces repeated storage of common prefixes" />,
+        code: {
+            cpp: `// C++ snippet
+struct TrieNode {
+    TrieNode* child[26] = {};
+    bool end = false;
+};
+void insert(TrieNode* root, string word) {
+    TrieNode* cur = root;
+    for (char c : word) {
+        int idx = c - 'a';
+        if (!cur->child[idx]) cur->child[idx] = new TrieNode();
+        cur = cur->child[idx];
+    }
+    cur->end = true;
+}`,
+            java: `// Java snippet
+class TrieNode {
+    TrieNode[] child = new TrieNode[26];
+    boolean end;
+}
+void insert(TrieNode root, String word) {
+    TrieNode cur = root;
+    for (char c : word.toCharArray()) {
+        int idx = c - 'a';
+        if (cur.child[idx] == null) cur.child[idx] = new TrieNode();
+        cur = cur.child[idx];
+    }
+    cur.end = true;
+}`
+        }
+    },
+    "string-interview-sheet": {
+        title: "Final interview checklist and revision sheet",
+        explanation: "Revise by pattern, not by random order: basics, two pointers, sliding window, hashing, pattern matching, and DP. Keep a small sheet of mistakes and edge cases.",
+        visual: <GenericArrayVisualizer inputArray={['Basics', 'Window', 'Hashing', 'KMP/Z', 'DP']} outputVariable="Revision cycle: solve -> analyze -> re-solve" description="Interview-ready string revision flow" />,
+        code: {
+            cpp: `// Final must-do checklist
+// 1) Valid Palindrome
+// 2) Longest Substring Without Repeating
+// 3) Minimum Window Substring
+// 4) Group Anagrams
+// 5) KMP + LPS implementation
+// 6) LCS and Edit Distance
+// 7) Word Break
+// 8) Trie insert + search`,
+            java: `// Weekly revision loop
+// Day 1: Basics + frequency
+// Day 2: Sliding window
+// Day 3: Hash map patterns
+// Day 4: KMP/Z/Rolling hash
+// Day 5: DP on strings
+// Day 6: Mixed contest set
+// Day 7: Revisit mistakes`
         }
     }
 };

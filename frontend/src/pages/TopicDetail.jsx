@@ -30,7 +30,7 @@ function TopicDetailContent({ content, topicId }) {
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-10 text-gray-900 dark:text-white transition-colors">
       <Link
-        to={`/learning-paths/dsa?topic=${topicId}`}
+        to={`/dsa/${topicId}`}
         className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-6 transition-colors"
       >
         <span className="mr-2">&lt;-</span> Back to Roadmap
@@ -148,7 +148,7 @@ export default function TopicDetail() {
     return (
       <div className="p-4 md:p-10 text-gray-900 dark:text-white transition-colors">
         <h1 className="text-xl md:text-2xl font-bold">Content not found</h1>
-        <Link to={`/learning-paths/dsa?topic=${topicId}`} className="text-cyan-400 hover:underline mt-4 inline-block">
+        <Link to={`/dsa/${topicId}`} className="text-cyan-400 hover:underline mt-4 inline-block">
           Return to Roadmap
         </Link>
       </div>
