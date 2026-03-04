@@ -3,7 +3,7 @@ const dsaLearningPath = {
     title: "DSA Learning Router",
     subtitle:
       "Select a topic card below to view its detailed, phase-wise roadmap. You can click on the roadmap points to see practical code examples.",
-    audience: "Current focus: Arrays and Strings."
+    audience: "Current focus: Arrays, Strings, and Recursion."
   },
   topics: [
     {
@@ -17,6 +17,12 @@ const dsaLearningPath = {
       title: "Strings",
       shortDescription:
         "Beginner-to-advanced string roadmap with patterns and interview prep."
+    },
+    {
+      id: "recursion",
+      title: "Recursion",
+      shortDescription:
+        "Beginner-to-advanced recursion roadmap with important interview questions."
     }
   ],
   content: {
@@ -271,6 +277,127 @@ const dsaLearningPath = {
               points: [
                 { id: "trie-strings-basics", title: "Trie basics for string dictionaries" },
                 { id: "string-interview-sheet", title: "Final revision checklist for interviews" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    recursion: {
+      title: "Recursion Roadmap",
+      intro:
+        "Recursion builds problem-solving depth for DSA. Start from base-case clarity, then move into pattern-based recursion, backtracking, divide-and-conquer, and memoization.",
+      phases: [
+        {
+          id: "r-phase-1",
+          title: "PHASE 1: RECURSION BASICS (Beginner)",
+          sections: [
+            {
+              heading: "1) Crystal Clear Concepts",
+              points: [
+                { id: "recursion-definition", title: "What is Recursion (Function calling itself)" },
+                { id: "base-case-vs-recursive-case", title: "Base case vs Recursive case" },
+                { id: "recursion-call-stack", title: "Call stack and stack frames" },
+                { id: "recursion-tree-dry-run", title: "Dry run using recursion tree" }
+              ]
+            },
+            {
+              heading: "2) Starter Questions",
+              points: [
+                { id: "print-1-to-n-recursion", title: "Print 1 to N using recursion" },
+                { id: "factorial-recursion", title: "Factorial using recursion" },
+                { id: "fibonacci-recursion", title: "Fibonacci recursion (and its cost)" },
+                { id: "reverse-array-recursion", title: "Reverse an array recursively" }
+              ]
+            }
+          ],
+          note: "Mindset: Every recursive call must move closer to a valid base case."
+        },
+        {
+          id: "r-phase-2",
+          title: "PHASE 2: LOGIC BUILDING (Beginner -> Intermediate)",
+          sections: [
+            {
+              heading: "3) Recursion Patterns and Analysis",
+              points: [
+                { id: "parameterized-vs-functional-recursion", title: "Parameterized vs Functional recursion" },
+                { id: "recurrence-time-complexity", title: "Recurrence relation and complexity intuition" },
+                { id: "divide-choose-not-choose", title: "Divide and choose/not-choose thinking" },
+                { id: "binary-search-recursive", title: "Binary Search with recursion" }
+              ]
+            },
+            {
+              heading: "4) Core Intermediate Questions",
+              points: [
+                { id: "check-palindrome-recursive", title: "Check palindrome recursively" },
+                { id: "power-fast-exponentiation-recursive", title: "Power(x, n) with fast recursion" },
+                { id: "recursion-easy-practice-set", title: "Practice set: easy to intermediate recursion" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "r-phase-3",
+          title: "PHASE 3: BACKTRACKING FOUNDATION (Important)",
+          sections: [
+            {
+              heading: "5) Include/Exclude Pattern",
+              points: [
+                { id: "subsequences-generation", title: "Generate all subsequences" },
+                { id: "subset-sum-k", title: "Subset sum equals K" },
+                { id: "combination-sum", title: "Combination Sum" },
+                { id: "permutations-recursion", title: "Generate permutations" }
+              ]
+            },
+            {
+              heading: "6) Constraint-Based Backtracking",
+              points: [
+                { id: "n-queens-backtracking", title: "N-Queens" },
+                { id: "rat-in-maze", title: "Rat in a Maze" },
+                { id: "sudoku-solver-backtracking", title: "Sudoku Solver" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "r-phase-4",
+          title: "PHASE 4: ADVANCED RECURSION APPLICATIONS",
+          sections: [
+            {
+              heading: "7) Divide and Conquer",
+              points: [
+                { id: "merge-sort-recursion", title: "Merge Sort" },
+                { id: "quick-sort-recursion", title: "Quick Sort" },
+                { id: "tower-of-hanoi", title: "Tower of Hanoi" }
+              ]
+            },
+            {
+              heading: "8) Tree Recursion",
+              points: [
+                { id: "tree-traversals-recursion", title: "Recursive DFS traversals (Pre/In/Post)" },
+                { id: "tree-height-diameter-recursion", title: "Tree height and diameter" },
+                { id: "lca-recursion", title: "Lowest Common Ancestor (Binary Tree)" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "r-phase-5",
+          title: "PHASE 5: OPTIMIZATION + INTERVIEW MASTERY",
+          sections: [
+            {
+              heading: "9) Recursion to DP Bridge",
+              points: [
+                { id: "memoization-basics", title: "Memoization basics" },
+                { id: "climb-stairs-recursion-dp", title: "Climbing Stairs: recursion -> memoization" },
+                { id: "knapsack-recursion-memo", title: "0/1 Knapsack: recursive + memoized" }
+              ]
+            },
+            {
+              heading: "10) Final Practice and Revision",
+              points: [
+                { id: "recursion-medium-hard-practice-set", title: "Practice set: medium to hard recursion/backtracking" },
+                { id: "recursion-interview-checklist", title: "Final recursion interview checklist" }
               ]
             }
           ]
