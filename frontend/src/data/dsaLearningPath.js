@@ -23,6 +23,12 @@ const dsaLearningPath = {
       title: "Recursion",
       shortDescription:
         "Beginner-to-advanced recursion roadmap with important interview questions."
+    },
+    {
+      id: "linkedlist",
+      title: "Linked List",
+      shortDescription:
+        "Beginner-to-advanced linked list roadmap covering basic concepts, variations, and advanced manipulations."
     }
   ],
   content: {
@@ -398,6 +404,148 @@ const dsaLearningPath = {
               points: [
                 { id: "recursion-medium-hard-practice-set", title: "Practice set: medium to hard recursion/backtracking" },
                 { id: "recursion-interview-checklist", title: "Final recursion interview checklist" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    linkedlist: {
+      title: "Linked List Roadmap",
+      intro:
+        "Linked Lists are fundamental data structures that solve memory contiguity issues. Progress from basic node creation to advanced pointer manipulations.",
+      phases: [
+        {
+          id: "ll-phase-1",
+          title: "1️⃣ Introduction to Linked List",
+          sections: [
+            {
+              heading: "Basics of Linked List",
+              points: [
+                { id: "linkedlist-definition", title: "What is a Linked List" },
+                { id: "linkedlist-vs-array", title: "Why Linked List over Array" },
+                { id: "node-creation", title: "Node structure & Memory representation" },
+                { id: "linkedlist-types-overview", title: "Types of Linked Lists overview" }
+              ]
+            }
+          ],
+          note: "Mindset: Always keep track of the head pointer, and use temporary pointers for traversal to avoid losing the list."
+        },
+        {
+          id: "ll-phase-2",
+          title: "2️⃣ Singly Linked List (Basic)",
+          sections: [
+            {
+              heading: "Operations",
+              points: [
+                { id: "linkedlist-create-traverse", title: "Creating & Traversing a Linked List" },
+                { id: "insert-at-head", title: "Insert at Beginning" },
+                { id: "insert-at-tail", title: "Insert at End" },
+                { id: "insert-at-position", title: "Insert at Specific Position" },
+                { id: "delete-at-head", title: "Delete from Beginning" },
+                { id: "delete-at-tail", title: "Delete from End" },
+                { id: "delete-by-value", title: "Delete at Position / by Value" },
+                { id: "linkedlist-search", title: "Search in Linked List" },
+                { id: "linkedlist-length", title: "Length of Linked List" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-3",
+          title: "3️⃣ Intermediate Operations",
+          sections: [
+            {
+              heading: "Reversal & Nth Node",
+              points: [
+                { id: "reverse-linkedlist", title: "Reverse a Linked List (Iterative & Recursive)" },
+                { id: "middle-of-linkedlist", title: "Find Middle of Linked List" },
+                { id: "nth-node-from-end", title: "Find/Remove Nth Node from End" }
+              ]
+            },
+            {
+              heading: "Cycle Detection",
+              points: [
+                { id: "detect-cycle", title: "Detect Loop (Floyd’s Cycle Detection)" },
+                { id: "starting-point-of-cycle", title: "Find Starting Node & Remove Loop" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-4",
+          title: "4️⃣ Advanced Problems",
+          sections: [
+            {
+              heading: "Sorting & Merging",
+              points: [
+                { id: "merge-two-sorted-lists", title: "Merge Two Sorted Linked Lists" },
+                { id: "merge-k-sorted-lists", title: "Merge K Sorted Linked Lists" },
+                { id: "remove-duplicates-sorted", title: "Remove Duplicates (Sorted & Unsorted)" }
+              ]
+            },
+            {
+              heading: "Reordering",
+              points: [
+                { id: "reverse-nodes-k-group", title: "Reverse Linked List in K Groups" },
+                { id: "check-palindrome-linkedlist", title: "Check if Linked List is Palindrome" },
+                { id: "intersection-of-two-lists", title: "Intersection of Two Linked Lists" },
+                { id: "rotate-linkedlist", title: "Rotate & Partition Linked List" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-5",
+          title: "5️⃣ Doubly Linked List",
+          sections: [
+            {
+              heading: "Core Features",
+              points: [
+                { id: "doubly-linkedlist", title: "Structure of Doubly Linked List" },
+                { id: "dll-insert-delete", title: "Insert & Delete (Beginning/End/Pos)" },
+                { id: "dll-reverse", title: "Reverse Doubly Linked List" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-6",
+          title: "6️⃣ Circular Linked List",
+          sections: [
+            {
+              heading: "Core Features",
+              points: [
+                { id: "circular-linkedlist", title: "Circular Linked List Introduction" },
+                { id: "cll-operations", title: "Insert, Delete & Traverse" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-7",
+          title: "7️⃣ Important Patterns",
+          sections: [
+            {
+              heading: "Techniques",
+              points: [
+                { id: "fast-slow-pointer-technique", title: "Fast & Slow Pointer Technique" },
+                { id: "dummy-node-technique", title: "Dummy Node & In-place Reversal" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "ll-phase-8",
+          title: "8️⃣ Hard Problems",
+          sections: [
+            {
+              heading: "Interview Level",
+              points: [
+                { id: "clone-with-random-pointer", title: "Copy List with Random Pointer" },
+                { id: "flattening-linkedlist", title: "Flatten a Multilevel Linked List" },
+                { id: "add-two-numbers-linkedlist", title: "Add Two Numbers using Linked List" },
+                { id: "lru-cache-linkedlist", title: "LRU Cache (Linked List + HashMap)" }
               ]
             }
           ]
