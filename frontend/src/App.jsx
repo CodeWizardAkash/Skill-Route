@@ -7,6 +7,7 @@ import Contributors from "./pages/Contributors"
 import LearningPathDetail from "./pages/LearningPathDetail"
 import TopicDetail from "./pages/TopicDetail"
 import DsaTopicRoadmap from "./pages/DsaTopicRoadmap"
+import AiMlTopicDetail from "./pages/AiMlTopicDetail"
 import CssOverview from "./pages/CssOverview"
 import CssSubtopicDetail from "./pages/CssSubtopicDetail"
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/learning-paths/:slug" element={<LearningPathDetail />} />
         <Route path="/dsa/:topicId" element={<DsaTopicRoadmap />} />
         <Route path="/dsa/:topicId/:pointId" element={<TopicDetail />} />
+        <Route path="/ai-ml/:topicId" element={<AiMlTopicDetail />} />
         <Route path="/css" element={<CssOverview />} />
         <Route path="/css/:topicId/:subtopicId" element={<CssSubtopicDetail />} />
         <Route path="/add-project" element={<AddProject />} />
