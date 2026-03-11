@@ -63,7 +63,7 @@ const dsaLearningPath = {
               ]
             }
           ],
-          note: "Mindset: Viewing every element once = O(n)."
+          note: "Viewing every element once = O(n)."
         },
         {
           id: "phase-2",
@@ -200,7 +200,7 @@ const dsaLearningPath = {
               ]
             }
           ],
-          note: "Mindset: A string is often solved like an array of characters with extra rules."
+          note: "A string is often solved like an array of characters with extra rules."
         },
         {
           id: "s-phase-2",
@@ -317,7 +317,7 @@ const dsaLearningPath = {
               ]
             }
           ],
-          note: "Mindset: Every recursive call must move closer to a valid base case."
+          note: "Every recursive call must move closer to a valid base case."
         },
         {
           id: "r-phase-2",
@@ -429,7 +429,7 @@ const dsaLearningPath = {
               ]
             }
           ],
-          note: "Mindset: Always keep track of the head pointer, and use temporary pointers for traversal to avoid losing the list."
+          note: "Always keep track of the head pointer, and use temporary pointers for traversal to avoid losing the list."
         },
         {
           id: "ll-phase-2",
