@@ -11,6 +11,8 @@ import AiMlTopicDetail from "./pages/AiMlTopicDetail"
 import AiMlPointDetail from "./pages/AiMlPointDetail"
 import CssOverview from "./pages/CssOverview"
 import CssSubtopicDetail from "./pages/CssSubtopicDetail"
+import HtmlTopicRoadmap from "./pages/HtmlTopicRoadmap"
+import HtmlPointDetail from "./pages/HtmlPointDetail"
 
 import AddProject from "./pages/AddProject";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -32,6 +34,8 @@ function App() {
         <Route path="/dsa/:topicId/:pointId" element={<TopicDetail />} />
         <Route path="/ai-ml/:topicId" element={<AiMlTopicDetail />} />
         <Route path="/ai-ml/:topicId/:pointId" element={<AiMlPointDetail />} />
+        <Route path="/web-development/:topicId" element={<HtmlTopicRoadmap />} />
+        <Route path="/web-development/:topicId/:pointId" element={<HtmlPointDetail />} />
         <Route path="/css" element={<CssOverview />} />
         <Route path="/css/:topicId/:subtopicId" element={<CssSubtopicDetail />} />
         <Route path="/add-project" element={<AddProject />} />
