@@ -11,6 +11,8 @@ import AiMlTopicDetail from "./pages/AiMlTopicDetail"
 import AiMlPointDetail from "./pages/AiMlPointDetail"
 import CssOverview from "./pages/CssOverview"
 import CssSubtopicDetail from "./pages/CssSubtopicDetail"
+import JavascriptOverview from "./pages/JavascriptOverview"
+import JavascriptSubtopicDetail from "./pages/JavascriptSubtopicDetail"
 import HtmlTopicRoadmap from "./pages/HtmlTopicRoadmap"
 import HtmlPointDetail from "./pages/HtmlPointDetail"
 
@@ -38,6 +40,8 @@ function App() {
         <Route path="/web-development/:topicId/:pointId" element={<HtmlPointDetail />} />
         <Route path="/css" element={<CssOverview />} />
         <Route path="/css/:topicId/:subtopicId" element={<CssSubtopicDetail />} />
+        <Route path="/javascript" element={<JavascriptOverview />} />
+        <Route path="/javascript/:topicId/:subtopicId" element={<JavascriptSubtopicDetail />} />
         <Route path="/add-project" element={<AddProject />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/signin" element={<SignIn />} />

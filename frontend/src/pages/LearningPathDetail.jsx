@@ -3,6 +3,7 @@ import paths from "../data/learningPaths.json"
 import dsaLearningPath from "../data/dsaLearningPath"
 import aiMlLearningPath from "../data/aiMlLearningPath"
 import cssLearningPath from "../data/cssLearningPath"
+import javascriptLearningPath from "../data/javascriptLearningPath"
 
 function NonDsaPathDetail({ path }) {
   return (
@@ -16,6 +17,10 @@ function NonDsaPathDetail({ path }) {
           <li key={`${path.slug}-${index}`}>
             {path.slug === "web-development" && topic === "CSS Fundamentals" ? (
               <Link to="/css" className="text-cyan-600 dark:text-cyan-400 hover:underline transition-colors">
+                {topic}
+              </Link>
+            ) : path.slug === "web-development" && topic === "JavaScript Basics" ? (
+              <Link to="/javascript" className="text-cyan-600 dark:text-cyan-400 hover:underline transition-colors">
                 {topic}
               </Link>
             ) : (
@@ -49,6 +54,15 @@ function WebDevelopmentPathDetail({ path }) {
           title: topic,
           shortDescription: cssLearningPath.hero.subtitle,
           to: "/css"
+        }
+      }
+
+      if (topic === "JavaScript Basics") {
+        return {
+          id: "javascript-basics",
+          title: topic,
+          shortDescription: javascriptLearningPath.hero.subtitle,
+          to: "/javascript"
         }
       }
 
