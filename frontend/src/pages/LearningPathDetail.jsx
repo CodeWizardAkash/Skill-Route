@@ -4,6 +4,7 @@ import dsaLearningPath from "../data/dsaLearningPath"
 import aiMlLearningPath from "../data/aiMlLearningPath"
 import cssLearningPath from "../data/cssLearningPath"
 import javascriptLearningPath from "../data/javascriptLearningPath"
+import Chatbot from "../components/Chatbot"
 
 function NonDsaPathDetail({ path }) {
   return (
@@ -152,6 +153,7 @@ function DetailedPathView({ path, learningPath, pathSlug, getTopicHref }) {
           })}
         </div>
       </section>
+      <Chatbot />
     </div>
   )
 }

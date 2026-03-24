@@ -1,3 +1,4 @@
+import Chatbot from "../components/Chatbot"
 import contributors from "../data/contributors.json"
 
 export default function Contributors() {
@@ -9,6 +10,7 @@ export default function Contributors() {
           <p className="text-gray-600 dark:text-gray-400">{c.role}</p>
         </div>
       ))}
+    <Chatbot />
     </div>
   )
 }

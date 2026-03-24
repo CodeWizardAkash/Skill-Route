@@ -8,6 +8,7 @@ import {
   Layout,
   Smartphone,
 } from "lucide-react";
+import Chatbot from "../components/Chatbot";
 
 const getCategoryIcon = (category) => {
   const cat = category.toLowerCase();
@@ -120,6 +121,7 @@ export default function Projects() {
           ))}
         </div>
       </div>
+      <Chatbot />
     </div>
   );
 }

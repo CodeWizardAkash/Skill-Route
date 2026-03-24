@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import paths from "../data/learningPaths.json"
 import Card from "../components/Card"
+import Chatbot from "../components/Chatbot"
 
 export default function LearningPaths() {
   return (
@@ -16,6 +17,7 @@ export default function LearningPaths() {
           />
         </Link>
       ))}
+    <Chatbot />
     </div>
   )
 }
