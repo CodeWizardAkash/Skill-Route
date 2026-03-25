@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Chatbot from "../components/Chatbot"
 
 export default function Home() {
   return (
@@ -116,6 +117,7 @@ export default function Home() {
           Learn • Build • Contribute • Grow
         </p>
       </section>
+      < Chatbot />
 
     </div>
   )
