@@ -12,6 +12,12 @@ const aiMlLearningPath = {
         "A full beginner-to-intermediate roadmap for Python skills required in AI/ML."
     },
     {
+      id: "ai-ml-fundamentals",
+      title: "AI/ML Fundamentals",
+      shortDescription:
+        "A structured module covering core Machine Learning concepts: Supervised vs Unsupervised, Regression, Classification, Overfitting, and Evaluation."
+    },
+    {
       id: "what-is-ai",
       title: "What is AI?",
       shortDescription: "Understand Artificial Intelligence fundamentals, scope, and real-world applications."
@@ -158,6 +164,52 @@ const aiMlLearningPath = {
                 { id: "py-kaggle-track", title: "Follow Kaggle Intro to ML exercises" },
                 { id: "py-mlcc-track", title: "Follow Google ML Crash Course modules" },
                 { id: "py-next-steps", title: "Next steps: Intermediate ML and Deep Learning" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ai-ml-fundamentals": {
+      title: "AI/ML Fundamentals Roadmap",
+      intro:
+        "A guided path to understand the core principles, models, and evaluation techniques in Artificial Intelligence and Machine Learning.",
+      phases: [
+        {
+          id: "aiml-phase-1",
+          title: "PHASE 1: CORE PARADIGMS",
+          sections: [
+            {
+              heading: "1) Learning Approaches",
+              points: [
+                { id: "aiml-sup-vs-unsup", title: "Supervised vs Unsupervised Learning" }
+              ]
+            }
+          ],
+          note: "Understand how data labeling determines the learning approach."
+        },
+        {
+          id: "aiml-phase-2",
+          title: "PHASE 2: KEY PROBLEM TYPES",
+          sections: [
+            {
+              heading: "2) Predictive Modeling",
+              points: [
+                { id: "aiml-regression", title: "Regression (Continuous Output)" },
+                { id: "aiml-classification", title: "Classification (Categorical Output)" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "aiml-phase-3",
+          title: "PHASE 3: MODEL PERFORMANCE",
+          sections: [
+            {
+              heading: "3) Training Challenges & Metrics",
+              points: [
+                { id: "aiml-overfitting", title: "Overfitting & Underfitting" },
+                { id: "aiml-evaluation", title: "Model Evaluation Strategies" }
               ]
             }
           ]
