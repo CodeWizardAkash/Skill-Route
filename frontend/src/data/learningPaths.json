@@ -39,11 +39,12 @@
     "slug": "cyber-security",
     "description": "Learn fundamentals of security, ethical hacking, and cyber defense.",
     "topics": [
-      "Networking Basics",
-      "Linux Fundamentals",
-      "Web Security Basics",
-      "Ethical Hacking Concepts",
-      "CTF & Practice Labs"
+      "Phase 1: Fundamentals",
+      "Phase 2: System & OS Basics",
+      "Phase 3: Networking Fundamentals",
+      "Phase 4: Web Security",
+      "Phase 5: Ethical Hacking",
+      "Phase 6: Practice & Labs"
     ]
   }
 ]
