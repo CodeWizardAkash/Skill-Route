@@ -6,6 +6,7 @@ import cssLearningPath from "../data/cssLearningPath"
 import javascriptLearningPath from "../data/javascriptLearningPath"
 import Chatbot from "../components/Chatbot"
 import reactLearningPath from "../data/reactLearningPath"
+import cybersecurityData from "../data/cybersecurityData"
 
 function NonDsaPathDetail({ path }) {
   return (
@@ -119,6 +120,10 @@ export default function LearningPathDetail() {
 
   if (path.slug === "web-development") {
     return <WebDevelopmentPathDetail path={path} />
+  }
+
+  if (path.slug === "cyber-security") {
+    return <DetailedPathView path={path} learningPath={cybersecurityData} pathSlug="cyber-security" />
   }
 
   return <NonDsaPathDetail path={path} />

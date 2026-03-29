@@ -17,6 +17,8 @@ import ReactOverview from "./pages/ReactOverview"
 import ReactSubtopicDetail from "./pages/ReactSubtopicDetail"
 import HtmlTopicRoadmap from "./pages/HtmlTopicRoadmap"
 import HtmlPointDetail from "./pages/HtmlPointDetail"
+import CybersecurityTopicRoadmap from "./pages/CybersecurityTopicRoadmap"
+import CybersecurityPointDetail from "./pages/CybersecurityPointDetail"
 
 import AddProject from "./pages/AddProject";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -38,6 +40,8 @@ function App() {
         <Route path="/dsa/:topicId/:pointId" element={<TopicDetail />} />
         <Route path="/ai-ml/:topicId" element={<AiMlTopicDetail />} />
         <Route path="/ai-ml/:topicId/:pointId" element={<AiMlPointDetail />} />
+        <Route path="/cyber-security/:topicId" element={<CybersecurityTopicRoadmap />} />
+        <Route path="/cyber-security/:topicId/:pointId" element={<CybersecurityPointDetail />} />
         <Route path="/web-development/:topicId" element={<HtmlTopicRoadmap />} />
         <Route path="/web-development/:topicId/:pointId" element={<HtmlPointDetail />} />
         <Route path="/css" element={<CssOverview />} />
