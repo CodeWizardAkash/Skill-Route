@@ -170,6 +170,81 @@ const TrainSplitVisual = () => (
   </div>
 )
 
+const SupervisedVsUnsupervisedVisual = () => (
+  <div className="flex flex-col items-center gap-4 my-6 w-full">
+    <div className="text-cyan-600 dark:text-cyan-300 font-semibold transition-colors">Learning Approaches</div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl">
+      <div className="border border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 transition-colors text-center">
+        <h3 className="font-bold text-purple-700 dark:text-purple-300 mb-2 transition-colors">Supervised Learning</h3>
+        <p className="text-sm text-gray-700 dark:text-gray-300 transition-colors">Data has labels (answers). Model learns to map input to output.</p>
+        <div className="mt-3 flex gap-2 text-xl justify-center items-center">
+          <span>🍎➡️ Apple</span>
+          <span className="text-gray-400 dark:text-gray-600">|</span>
+          <span>🍊➡️ Orange</span>
+        </div>
+      </div>
+      <div className="border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 transition-colors text-center">
+        <h3 className="font-bold text-blue-700 dark:text-blue-300 mb-2 transition-colors">Unsupervised Learning</h3>
+        <p className="text-sm text-gray-700 dark:text-gray-300 transition-colors">Data has no labels. Model finds hidden structures or groups on its own.</p>
+        <div className="mt-3 flex gap-2 text-xl justify-center items-center">
+          <span>🍎🍏🍎🔴 ➡️ 🍎🍏 | 🍎🔴</span>
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
+const RegressionVsClassificationVisual = () => (
+  <div className="flex flex-col items-center gap-4 my-6 w-full">
+    <div className="text-cyan-600 dark:text-cyan-300 font-semibold transition-colors">Predictive Modeling Types</div>
+    <div className="w-full max-w-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-4 flex flex-col md:flex-row gap-6 transition-colors">
+      <div className="flex-1 text-center border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 pb-4 md:pb-0 md:pr-4">
+        <div className="font-bold text-indigo-600 dark:text-indigo-400 mb-1 transition-colors">Regression</div>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 transition-colors">Predicts continuous quantity</p>
+        <div className="h-20 w-full rounded bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 flex items-end p-2 gap-1 justify-center transition-colors">
+           <div className="w-4 bg-indigo-300 dark:bg-indigo-600 h-[20%] rounded-t transition-colors"></div>
+           <div className="w-4 bg-indigo-400 dark:bg-indigo-500 h-[40%] rounded-t transition-colors"></div>
+           <div className="w-4 bg-indigo-500 dark:bg-indigo-400 h-[50%] rounded-t transition-colors"></div>
+           <div className="w-4 bg-indigo-600 dark:bg-indigo-300 h-[80%] rounded-t transition-colors"></div>
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 transition-colors">e.g. Price: $250k, $300k...</p>
+      </div>
+      <div className="flex-1 text-center pt-2 md:pt-0">
+        <div className="font-bold text-emerald-600 dark:text-emerald-400 mb-1 transition-colors">Classification</div>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 transition-colors">Predicts category or class</p>
+        <div className="h-20 w-full rounded bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 flex flex-col items-center justify-center gap-2 transition-colors">
+           <div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-emerald-400 dark:bg-emerald-600 transition-colors"></div><span className="text-xs text-gray-700 dark:text-gray-300 transition-colors">Class A</span></div>
+           <div className="flex items-center gap-2"><div className="w-4 h-4 rounded bg-teal-400 dark:bg-teal-600 transition-colors"></div><span className="text-xs text-gray-700 dark:text-gray-300 transition-colors">Class B</span></div>
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 transition-colors">e.g. Spam vs Not Spam</p>
+      </div>
+    </div>
+  </div>
+)
+
+const OverfittingVisual = () => (
+  <div className="flex flex-col items-center gap-4 my-6 w-full">
+    <div className="text-cyan-600 dark:text-cyan-300 font-semibold transition-colors">Model Fit: The Goldilocks Problem</div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-4xl text-center">
+      <div className="p-4 border border-amber-200 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/10 rounded-lg transition-colors shadow-sm">
+        <div className="font-bold text-amber-700 dark:text-amber-400 mb-2 transition-colors text-lg">Underfitting</div>
+        <div className="text-3xl my-3">➖</div>
+        <p className="text-xs text-gray-600 dark:text-gray-400 transition-colors">Too simple. Fails to capture patterns. High Error.</p>
+      </div>
+      <div className="p-4 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg transition-colors shadow-sm">
+        <div className="font-bold text-green-700 dark:text-green-400 mb-2 transition-colors text-lg">Good Fit (Robust)</div>
+        <div className="text-3xl my-3">🌊</div>
+        <p className="text-xs text-gray-600 dark:text-gray-400 transition-colors">Captures genuine patterns. Generalizes well.</p>
+      </div>
+      <div className="p-4 border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-900/10 rounded-lg transition-colors shadow-sm">
+        <div className="font-bold text-red-700 dark:text-red-400 mb-2 transition-colors text-lg">Overfitting</div>
+        <div className="text-3xl my-3">〰️</div>
+        <p className="text-xs text-gray-600 dark:text-gray-400 transition-colors">Too complex. Memorizes noise. Fails on new data.</p>
+      </div>
+    </div>
+  </div>
+)
+
 const simpleCode = {
   python: `print("Practice daily")`
 }
@@ -502,6 +577,34 @@ const point = (id, title, explanation, visual = null) => ({
 })
 
 export const aiMlTopicsContent = {
+  'aiml-sup-vs-unsup': point(
+    'aiml-sup-vs-unsup',
+    'Supervised vs Unsupervised Learning',
+    'Supervised Learning is like a student learning with a teacher. The data provided has both inputs (features) and correct answers (labels). The model learns the mapping to predict answers for new inputs.\n\nUnsupervised Learning is like a student learning by observation without an answer key. The data has inputs but no labels. The algorithm tries to find inherent patterns, groupings, or structures on its own.',
+    <SupervisedVsUnsupervisedVisual />
+  ),
+  'aiml-regression': point(
+    'aiml-regression',
+    'Regression (Continuous Output)',
+    'Regression is a supervised learning task where the goal is to predict a continuous numerical value.\n\nFor example, predicting the price of a house based on its square footage, or forecasting next week\'s temperature. Since the output can be any number within a range, we measure error by seeing how far off our predicted numbers are from the actual values.',
+    <RegressionVsClassificationVisual />
+  ),
+  'aiml-classification': point(
+    'aiml-classification',
+    'Classification (Categorical Output)',
+    'Classification is a supervised learning task where the goal is to predict a discrete category or class label.\n\nExamples include predicting if an email is "Spam" or "Not Spam", or deciding if a tumor is "Malignant" or "Benign". Instead of predicting a specific number, the model typically outputs the probability of the input belonging to each known category.'
+  ),
+  'aiml-overfitting': point(
+    'aiml-overfitting',
+    'Overfitting & Underfitting',
+    'Overfitting happens when a model is too complex and memorizes the training data (including its noise) instead of learning the general trend. It performs perfectly on training data but poorly on test data.\n\nUnderfitting happens when a model is too simple to capture the underlying patterns in the data. It performs poorly on both training and test data.\n\nThe goal of machine learning is to find a "good fit" (the sweet spot) where the model generalizes well to unseen data.',
+    <OverfittingVisual />
+  ),
+  'aiml-evaluation': point(
+    'aiml-evaluation',
+    'Model Evaluation Strategies',
+    'To know if a model is actually good, we must evaluate it on data it has never seen. That\'s why we split data into training and test sets.\n\nEvaluation metrics depend on the task:\n- Regression metrics: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE). Lower is better.\n- Classification metrics: Accuracy (percentage correct), Precision (how many selected were relevant), Recall (how many relevant were selected), and F1-score (balance of precision and recall).\n\nWithout proper evaluation, you cannot trust a model\'s predictions in the real world.'
+  ),
   'py-install-and-repl': point(
     'py-install-and-repl',
     'Install Python and run scripts',
